@@ -2,14 +2,12 @@
 
 require 'bank'
 
-
 RSpec.describe Bank do
   subject(:bank) { described_class.new }
-  let(:an_amount){1000}
-  let(:an_amount1){500}
-  let(:type){' '}
-  let(:a_date){ '26/04/2021' }
-
+  let(:an_amount) { 1000 }
+  let(:an_amount1) { 500 }
+  let(:type) { ' ' }
+  let(:a_date) { '26/04/2021' }
 
   context('When depositing the money') do
     it('Increases the balance') do
@@ -18,11 +16,11 @@ RSpec.describe Bank do
     end
   end
 
-  context('When withdraing money ') do 
-    it('Lowers the amount ') do 
-        bank.deposit(an_amount)
-        bank.withdraw(an_amount1)
-        expect(bank.balance).to eq(500)
+  context('When withdraing money ') do
+    it('Lowers the amount ') do
+      bank.deposit(an_amount)
+      bank.withdraw(an_amount1)
+      expect(bank.balance).to eq(500)
     end
   end
 
@@ -31,6 +29,13 @@ RSpec.describe Bank do
       allow(bank).to receive(:date).and_return(a_date)
       bank.deposit(an_amount)
       expect(bank.transactions).to eq([[a_date, an_amount, type, bank.balance]])
+    end
+
+    it('records date,amount, credit and balance for withdraw') do
+      allow(bank).to receive(:date).and_return(a_date)
+      bank.deposit(an_amount)
+      bank.withdraw(an_amount1)
+      expect(bank.transactions[1]).to eq([a_date, type, 500, bank.balance])
     end
   end
 end
