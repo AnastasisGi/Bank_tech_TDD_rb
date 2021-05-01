@@ -22,19 +22,24 @@ date || credit || debit || balance
 My Test solution is as follows
 
 User stories
-
+```
 As a user,
 So that I can know how to manage my money
 I want to see my balance
-
+```
+```
 As a user,
 So that I can increase the balance
 I want to deposit money
-
+```
+```
 As a user,
 So I can use money
 I want to be able to withdraw money
+```
+```
 As a user,
 I want to be able to print out a statement in the following format
 
 date || credit || debit || balance
+```
